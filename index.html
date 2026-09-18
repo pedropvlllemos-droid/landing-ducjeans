@@ -908,15 +908,14 @@
       document.getElementById('successConsultant').textContent=consultant?consultant.name:'Equipe comercial DUC';
       document.getElementById('successMessage').textContent=`${data.nome.split(' ')[0]}, obrigado pelo interesse em revender DUC. Seu cadastro foi recebido com sucesso.`;
 
-     const waBtn=document.getElementById('whatsappBtn');
+      const waBtn=document.getElementById('whatsappBtn');
+      const first=data.nome.split(' ')[0];
+      const msg=`Olá! Sou ${first}, de ${data.cidade}/${data.estado}. Acabei de concluir meu cadastro no Atacado DUC e gostaria de dar continuidade ao atendimento.`;
 
-const first=data.nome.split(' ')[0];
-const msg=`Olá! Sou ${first}, de ${data.cidade}/${data.estado}. Acabei de concluir meu cadastro no Atacado DUC e gostaria de dar continuidade ao atendimento.`;
+      waBtn.href=`https://wa.me/5562981607267?text=${encodeURIComponent(msg)}`;
+      waBtn.hidden=false;
+      waBtn.onclick=()=>track('Contact',{content_name:'WhatsApp pós-cadastro'});
 
-waBtn.href=`https://wa.me/5562981607267?text=${encodeURIComponent(msg)}`;
-waBtn.hidden=false;
-waBtn.onclick=()=>track('Contact',{content_name:'WhatsApp pós-cadastro'});
-      }
       track('Lead',{content_name:'Cadastro Atacado DUC'});
       document.getElementById('formCard').scrollIntoView({behavior:'smooth',block:'center'});
     }
