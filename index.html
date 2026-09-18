@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="description" content="Atacado DUC Jeans. Cadastre sua loja para conhecer as linhas DUC Jeans e DUC Fitness." />
+  <title>Atacado DUC — DUC na sua vitrine</title>
+
+  <style>
+    :root{
+      --ink:#0b0b0b;
+      --ink-2:#161616;
+      --paper:#f5f2ec;
+      --paper-2:#ece7de;
+      --white:#fff;
+      --muted:#706b66;
+      --denim:#2a4a71;
+      --champagne:#c6b49b;
+      --line:rgba(11,11,11,.14);
+      --line-light:rgba(255,255,255,.18);
+      --max:1440px;
+      --header:88px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+      --font-ui:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      --font-display:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 18px)}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--paper);
+      font-family:var(--font-ui);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    body.menu-open{overflow:hidden}
+    img{display:block;max-width:100%;height:auto}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    ::selection{background:var(--ink);color:var(--white)}
+
+    .container{width:min(calc(100% - 48px),var(--max));margin-inline:auto}
+    .section{padding:clamp(82px,10vw,152px) 0}
+    .eyebrow{
+      display:flex;align-items:center;gap:10px;
+      font-size:11px;line-height:1;text-transform:uppercase;letter-spacing:.18em;font-weight:800;
+    }
+    .eyebrow::before{content:"";width:26px;height:1px;background:currentColor;opacity:.75}
+    .display{
+      margin:0;
+      font-family:var(--font-display);
+      font-size:clamp(58px,8.6vw,142px);
+      line-height:.88;
+      letter-spacing:-.065em;
+      text-transform:uppercase;
+      font-weight:300;
+    }
+    .h2{
+      margin:0;
+      max-width:980px;
+      font-family:var(--font-display);
+      font-size:clamp(42px,6vw,90px);
+      line-height:.9;
+      letter-spacing:-.06em;
+      text-transform:uppercase;
+      font-weight:300;
+    }
+    .lead{font-size:clamp(18px,2vw,26px);line-height:1.35;letter-spacing:-.02em}
+    .copy{font-size:16px;line-height:1.7;color:#45423e}
+    .muted{color:var(--muted)}
+
+    .btn{
+      min-height:52px;
+      display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      padding:0 22px;
+      border:1px solid transparent;
+      background:var(--ink);color:var(--white);
+      text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:900;
+      transition:transform .25s var(--ease),background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease),box-shadow .25s var(--ease);
+    }
+    .btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(0,0,0,.12)}
+    .btn-light{background:var(--white);color:var(--ink);border-color:rgba(255,255,255,.2)}
+    .btn-outline{background:transparent;color:inherit;border-color:currentColor}
+    .btn-arrow::after{content:"↗";font-size:16px;line-height:1}
+
+    /* Topbar + header */
+    .topbar{
+      min-height:34px;background:#000;color:var(--white);
+      display:flex;align-items:center;justify-content:center;
+      padding:8px 18px;text-align:center;
+      font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .header{
+      position:sticky;top:0;z-index:50;height:var(--header);
+      background:rgba(8,8,8,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      color:var(--white);
+    }
+    .header-inner{height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+    .brand{display:inline-flex;align-items:center}
+    .brand-logo{display:block;width:auto;height:auto;max-width:100%}
+    .brand-logo-header{height:64px}
+    .brand-logo-footer{height:118px}
+    .nav{display:flex;align-items:center;gap:28px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.92)}
+    .nav a{position:relative}
+    .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-7px;height:1px;background:currentColor;transition:right .25s var(--ease)}
+    .nav a:hover::after{right:0}
+    .header-cta{justify-self:end}
+    .menu-btn{display:none;border:0;background:transparent;color:white;padding:8px;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    /* Hero */
+    .hero{position:relative;min-height:calc(100svh - 34px);background:#050505;color:white;overflow:hidden}
+    .hero-media{position:absolute;inset:0}
+    .hero-media img{width:100%;height:100%;object-fit:cover;object-position:68% 20%;filter:saturate(.84) contrast(1.02) brightness(.9)}
+    .hero-media::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(90deg,rgba(0,0,0,.8) 0%,rgba(0,0,0,.46) 38%,rgba(0,0,0,.12) 70%),linear-gradient(0deg,rgba(0,0,0,.38),transparent 42%);
+    }
+    .hero-inner{position:relative;z-index:1;min-height:inherit;display:flex;align-items:flex-end;padding:10vh 0 clamp(54px,7vw,92px)}
+    .hero-content{width:min(840px,80%)}
+    .hero .display{font-size:clamp(66px,10.7vw,166px);max-width:920px}
+    .hero-copy{max-width:660px;margin:26px 0 28px;font-size:clamp(16px,1.7vw,23px);line-height:1.48;color:rgba(255,255,255,.82)}
+    .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .hero-index{
+      position:absolute;right:clamp(24px,4vw,64px);bottom:clamp(30px,5vw,60px);z-index:2;
+      font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.75);writing-mode:vertical-rl;transform:rotate(180deg)
+    }
+
+    /* Denim motion */
+    .denim-motion{background:var(--paper);padding:clamp(68px,8vw,110px) 0;border-bottom:1px solid var(--line)}
+    .denim-motion-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,6vw,86px);align-items:center}
+    .denim-motion-copy{max-width:520px}
+    .denim-motion-copy .eyebrow{margin-bottom:16px}
+    .denim-motion-title{margin:0;font-family:var(--font-display);font-size:clamp(42px,5.4vw,88px);line-height:.9;letter-spacing:-.065em;text-transform:uppercase;font-weight:300}
+    .denim-motion-copy p{margin:22px 0 0;font-size:17px;line-height:1.7;color:#45413c}
+    .denim-motion-note{margin-top:24px;font-size:10px;line-height:1.5;letter-spacing:.14em;text-transform:uppercase;color:#7d7770;font-weight:800}
+    .denim-motion-media{display:flex;justify-content:center}
+    .denim-motion-frame{width:min(100%,420px);background:#eef0f2;box-shadow:0 28px 70px rgba(24,20,15,.08)}
+    .denim-motion-frame img{width:100%;height:auto;display:block}
+
+    /* Marquee */
+    .marquee{background:#0d0d0d;color:white;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);overflow:hidden}
+    .marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
+    .marquee-item{display:flex;align-items:center;gap:34px;padding:18px 34px;font-size:13px;letter-spacing:.14em;font-weight:900;text-transform:uppercase;white-space:nowrap}
+    .marquee-dot{width:5px;height:5px;border-radius:99px;background:currentColor;opacity:.8}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    /* Intro */
+    .intro-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(46px,8vw,130px);align-items:start}
+    .intro-copy{max-width:620px;margin-top:10px}
+    .intro-copy .lead{margin:0 0 26px}
+    .intro-stats{margin-top:46px;border-top:1px solid var(--line)}
+    .stat{display:grid;grid-template-columns:62px 1fr;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:center}
+    .stat b{font-size:12px;letter-spacing:.12em}
+    .stat span{font-size:15px;color:#4a4743}
+
+    /* editorial split */
+    .editorial{padding:0;background:#c9bbaa}
+    .editorial-grid{display:grid;grid-template-columns:1fr 1fr;min-height:860px}
+    .editorial-media{min-height:680px;overflow:hidden}
+    .editorial-media img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 1.2s var(--ease)}
+    .editorial:hover .editorial-media img{transform:scale(1.025)}
+    .editorial-copy{padding:clamp(52px,8vw,112px);display:flex;flex-direction:column;justify-content:space-between;background:#0d0d0d;color:white}
+    .editorial-copy p{max-width:540px;color:rgba(255,255,255,.72);font-size:18px;line-height:1.65}
+    .editorial-kicker{font-family:var(--font-display);font-size:clamp(34px,5vw,76px);font-weight:300;line-height:.9;letter-spacing:-.055em;text-transform:uppercase;max-width:620px}
+
+    /* universe */
+    .universe-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:54px}
+    .universe-head p{max-width:430px;margin:0 0 6px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .gallery-col{display:grid;gap:14px}
+    .tile{position:relative;overflow:hidden;background:#ddd;min-height:520px}
+    .tile.small{min-height:360px}
+    .tile img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease),filter .8s var(--ease)}
+    .tile:hover img{transform:scale(1.035);filter:saturate(1.05)}
+    .tile-label{position:absolute;left:22px;bottom:20px;background:rgba(17,17,17,.86);color:#fff;padding:11px 14px;font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;backdrop-filter:blur(8px)}
+    .tile-label.light{background:rgba(255,255,255,.92);color:#111}
+
+    /* Steps */
+    .how{background:var(--ink);color:white}
+    .how .h2{max-width:1100px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:72px;border-top:1px solid var(--line-light);border-left:1px solid var(--line-light)}
+    .step{min-height:280px;padding:28px;border-right:1px solid var(--line-light);border-bottom:1px solid var(--line-light);display:flex;flex-direction:column;justify-content:space-between}
+    .step-no{font-size:11px;letter-spacing:.14em;font-weight:900;color:rgba(255,255,255,.5)}
+    .step h3{margin:0;font-size:clamp(24px,2.5vw,36px);line-height:1;letter-spacing:-.04em;text-transform:uppercase}
+    .step p{margin:14px 0 0;color:rgba(255,255,255,.62);line-height:1.55;font-size:14px}
+
+    /* Form */
+    .form-section{background:#eae4da}
+    .form-shell{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(40px,7vw,110px);align-items:start}
+    .form-aside{position:sticky;top:calc(var(--header) + 34px)}
+    .form-aside .h2{font-size:clamp(48px,6vw,84px)}
+    .form-aside p{max-width:460px;margin:26px 0 0}
+    .form-note{display:flex;gap:12px;margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;line-height:1.5;color:#5f5a54}
+    .form-note b{color:var(--ink)}
+
+    .form-card{background:#fff;border:1px solid rgba(17,17,17,.1);box-shadow:0 30px 70px rgba(21,17,12,.08)}
+    .progress{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:16px 16px 0}
+    .progress span{height:3px;background:#e8e6e2;transition:background .25s}
+    .progress span.active{background:var(--ink)}
+    .form-body{padding:clamp(28px,5vw,58px)}
+    .form-step{display:none;animation:fadeIn .35s var(--ease)}
+    .form-step.active{display:block}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+    .step-meta{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:900;color:#77736d;margin-bottom:14px}
+    .form-title{font-size:clamp(31px,4vw,52px);line-height:1;letter-spacing:-.05em;margin:0 0 30px;text-transform:uppercase}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .field{display:flex;flex-direction:column;gap:8px}
+    .field.full{grid-column:1/-1}
+    .field label,.group-label{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;color:#4f4c48}
+    .field input,.field select,.field textarea{
+      width:100%;border:0;border-bottom:1px solid #c9c4bd;background:transparent;color:var(--ink);padding:13px 2px 12px;outline:0;border-radius:0;
+      transition:border-color .2s,box-shadow .2s;font-size:16px;
+    }
+    .field textarea{min-height:94px;resize:vertical}
+    .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ink);box-shadow:0 1px 0 var(--ink)}
+    .choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .choice-grid.three{grid-template-columns:repeat(3,1fr)}
+    .choice{position:relative}
+    .choice input{position:absolute;opacity:0;pointer-events:none}
+    .choice label{min-height:50px;display:flex;align-items:center;justify-content:center;border:1px solid #d9d5cf;background:#fff;padding:10px 12px;text-align:center;font-size:11px;line-height:1.3;letter-spacing:.07em;text-transform:uppercase;font-weight:850;transition:.2s}
+    .choice input:checked + label{background:var(--ink);border-color:var(--ink);color:#fff}
+    .choice input:focus-visible + label{outline:2px solid var(--denim);outline-offset:2px}
+    .form-nav{display:flex;justify-content:space-between;gap:12px;margin-top:34px}
+    .form-nav .btn{min-width:136px}
+    .error{display:none;margin-top:14px;padding:12px 14px;background:#fff2f0;border:1px solid #e3c3bf;color:#7a2820;font-size:13px;line-height:1.45}
+    .error.show{display:block}
+    .consent{display:grid;gap:12px;margin-top:22px}
+    .checkline{display:flex;gap:10px;align-items:flex-start;font-size:12px;line-height:1.45;color:#595650}
+    .checkline input{margin-top:2px;accent-color:var(--ink)}
+    .honeypot{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+
+    .success{display:none;padding:clamp(34px,6vw,64px)}
+    .success.show{display:block}
+    .success-mark{width:48px;height:48px;border-radius:50%;background:var(--ink);color:white;display:grid;place-items:center;font-weight:900;margin-bottom:28px}
+    .success h3{font-size:clamp(38px,5vw,66px);line-height:.95;letter-spacing:-.05em;text-transform:uppercase;margin:0 0 22px}
+    .success p{color:#55514c;line-height:1.65;max-width:620px}
+    .success-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#ddd8d1;margin:28px 0}
+    .success-cell{background:white;padding:18px}
+    .success-cell small{display:block;text-transform:uppercase;font-size:9px;letter-spacing:.12em;font-weight:900;color:#77736d;margin-bottom:7px}
+    .success-cell strong{font-size:15px}
+    #whatsappBtn[hidden]{display:none!important}
+
+    /* Quote editorial */
+    .quote{position:relative;min-height:760px;color:white;display:flex;align-items:flex-end;overflow:hidden}
+    .quote img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+    .quote::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.74),rgba(0,0,0,.05) 65%)}
+    .quote-inner{position:relative;z-index:1;padding-bottom:clamp(50px,8vw,100px)}
+    .quote-text{max-width:980px;font-family:var(--font-display);font-size:clamp(45px,7vw,104px);font-weight:300;line-height:.88;letter-spacing:-.06em;text-transform:uppercase;margin:0}
+    .quote-text em{font-style:normal;color:#d8d0c4}
+
+    /* FAQ */
+    .faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:clamp(44px,8vw,120px)}
+    .faq-list{border-top:1px solid var(--line)}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:22px 0;background:transparent;border:0;text-align:left;font-size:15px;font-weight:850}
+    .faq-q span:last-child{font-size:20px;font-weight:400;transition:transform .25s}
+    .faq-item.open .faq-q span:last-child{transform:rotate(45deg)}
+    .faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .3s var(--ease)}
+    .faq-a > div{overflow:hidden}
+    .faq-a p{margin:0;padding:0 36px 24px 0;color:#55514c;line-height:1.65;font-size:14px}
+    .faq-item.open .faq-a{grid-template-rows:1fr}
+
+    /* Final */
+    .final{background:var(--denim);color:white;text-align:center}
+    .final .container{display:flex;flex-direction:column;align-items:center}
+    .final .h2{max-width:1080px}
+    .final p{max-width:560px;color:rgba(255,255,255,.75);margin:26px auto 32px}
+
+    /* Footer */
+    .footer{background:#111;color:white;padding:54px 0 28px}
+    .footer-top{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;padding-bottom:52px;border-bottom:1px solid var(--line-light)}
+    .footer-wordmark{display:inline-flex;align-items:center}
+    .footer-right{display:flex;justify-content:flex-end;gap:70px}
+    .footer-col{display:grid;gap:10px;align-content:start;font-size:12px}
+    .footer-col b{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#868686;margin-bottom:8px}
+    .footer-bottom{display:flex;justify-content:space-between;gap:20px;padding-top:24px;color:#777;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+
+    .mobile-cta{display:none}
+    .mobile-menu{display:none}
+
+    /* Reveal */
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media (max-width: 980px){
+      :root{--header:72px}
+      .container{width:min(calc(100% - 32px),var(--max))}
+      .nav,.header-cta{display:none}
+      .header-inner{grid-template-columns:1fr auto}
+      .brand-logo-header{height:46px}
+      .menu-btn{display:block;justify-self:end}
+      .mobile-menu{
+        position:fixed;inset:calc(34px + var(--header)) 0 0;background:var(--paper);z-index:49;
+        padding:34px 20px;display:flex;flex-direction:column;gap:0;
+        transform:translateX(100%);transition:transform .35s var(--ease);
+      }
+      body.menu-open .mobile-menu{transform:none}
+      .mobile-menu a{padding:20px 4px;border-bottom:1px solid var(--line);font-size:28px;line-height:1;text-transform:uppercase;font-weight:900;letter-spacing:-.04em}
+      .mobile-menu .btn{margin-top:24px;font-size:12px}
+      .hero-content{width:100%}
+      .hero .display{font-size:clamp(62px,17vw,108px)}
+      .hero-media img{object-position:66% 18%}
+      .hero-media::after{background:linear-gradient(0deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.36) 58%,rgba(5,5,5,.05) 100%)}
+      .hero-index{display:none}
+      .intro-grid,.form-shell,.faq-grid{grid-template-columns:1fr}
+      .form-aside{position:static}
+      .editorial-grid{grid-template-columns:1fr;min-height:0}
+      .editorial-media{min-height:650px}
+      .editorial-copy{min-height:600px}
+      .gallery{grid-template-columns:1fr}
+      .tile,.tile.small{min-height:680px}
+      .steps{grid-template-columns:1fr 1fr}
+      .universe-head{display:grid;gap:18px}
+      .footer-top{grid-template-columns:1fr}
+      .footer-right{justify-content:flex-start}
+    }
+
+    @media (max-width: 640px){
+      .container{width:min(calc(100% - 24px),var(--max))}
+      .section{padding:76px 0}
+      .topbar{font-size:9px;min-height:32px}
+      .hero{min-height:calc(100svh - 32px)}
+      .hero-inner{padding-bottom:42px}
+      .hero .display{font-size:clamp(58px,18vw,86px);line-height:.83}
+      .hero-copy{font-size:16px;margin:18px 0 24px;max-width:92%}
+      .hero-actions .btn{width:100%}
+      .hero-actions .btn-outline{display:none}
+      .denim-motion{padding:56px 0}
+      .denim-motion-title{font-size:clamp(38px,12vw,58px)}
+      .denim-motion-copy p{font-size:15px}
+      .denim-motion-frame{width:min(100%,360px)}
+      .display{font-size:clamp(52px,16vw,84px)}
+      .h2{font-size:clamp(44px,13vw,68px)}
+      .intro-grid{gap:46px}
+      .editorial-media{min-height:570px}
+      .editorial-copy{min-height:520px;padding:36px 22px}
+      .editorial-kicker{font-size:48px}
+      .gallery,.gallery-col{gap:8px}
+      .tile,.tile.small{min-height:480px}
+      .steps{grid-template-columns:1fr;margin-top:48px}
+      .step{min-height:220px}
+      .field-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .choice-grid.three{grid-template-columns:1fr 1fr}
+      .form-body{padding:28px 20px}
+      .form-nav{position:sticky;bottom:0;background:linear-gradient(0deg,#fff 70%,rgba(255,255,255,0));padding-top:18px;padding-bottom:4px}
+      .form-nav .btn{min-width:0;flex:1}
+      .success-grid{grid-template-columns:1fr}
+      .quote{min-height:650px}
+      .quote-text{font-size:clamp(48px,14vw,74px)}
+      .footer-right{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+      .footer-bottom{flex-direction:column}
+      .mobile-cta{
+        position:fixed;z-index:45;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));
+        display:flex;align-items:center;justify-content:center;min-height:54px;
+        background:#0b0b0b;color:white;border:1px solid rgba(255,255,255,.14);box-shadow:0 14px 35px rgba(0,0,0,.24);
+        font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;
+        transition:opacity .25s,transform .25s;
+      }
+      .mobile-cta.hide{opacity:0;transform:translateY(18px);pointer-events:none}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">ATACADO DUC — CADASTRO PARA LOJISTAS E REVENDEDORES</div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="DUC Jeans — início"><img class="brand-logo brand-logo-header" src="duc-logo-white.png" alt="DUC Jeans" /></a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#marca">A marca</a>
+        <a href="#universo">Coleções</a>
+        <a href="#como-comprar">Atacado</a>
+        <a href="#duvidas">Dúvidas</a>
+      </nav>
+      <a class="btn header-cta" href="#cadastro">Quero revender DUC</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+    </div>
+  </header>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+    <a href="#marca">A marca</a>
+    <a href="#universo">Coleções</a>
+    <a href="#como-comprar">Atacado</a>
+    <a href="#duvidas">Dúvidas</a>
+    <a class="btn" href="#cadastro">Quero revender DUC</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero" aria-label="Atacado DUC">
+      <div class="hero-media"><img src="duc-mens-sport.jpg" alt="Campanha masculina DUC" /></div>
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <div class="eyebrow">DUC Jeans · Fitness · Atacado</div>
+          <h1 class="display">DUC NA SUA<br>VITRINE.</h1>
+          <p class="hero-copy">Jeans, moda fitness em poliamida e propostas femininas e masculinas para uma vitrine com mais presença, desejo e variedade.</p>
+          <div class="hero-actions">
+            <a class="btn btn-light" href="#cadastro">Quero revender DUC</a>
+            <a class="btn btn-outline" href="#universo">Conhecer a DUC</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-index">ATACADO DUC · 2026</div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-item"><span>DUC JEANS</span><i class="marquee-dot"></i><span>DUC FITNESS</span><i class="marquee-dot"></i><span>ATACADO</span><i class="marquee-dot"></i><span>JEANS</span><i class="marquee-dot"></i><span>MOVIMENTO</span><i class="marquee-dot"></i></div>
+        <div class="marquee-item"><span>DUC JEANS</span><i class="marquee-dot"></i><span>DUC FITNESS</span><i class="marquee-dot"></i><span>ATACADO</span><i class="marquee-dot"></i><span>JEANS</span><i class="marquee-dot"></i><span>MOVIMENTO</span><i class="marquee-dot"></i></div>
+      </div>
+    </div>
+
+
+    <section class="section form-section" id="cadastro">
+      <div class="container form-shell">
+        <aside class="form-aside reveal">
+          <div class="eyebrow">Cadastro de atacado</div>
+          <h2 class="h2">VAMOS COLOCAR A DUC NA SUA LOJA?</h2>
+          <p class="copy">Conte um pouco sobre a sua operação. Com essas informações, a equipe DUC prepara um atendimento mais objetivo para você.</p>
+          <div class="form-note"><span>↳</span><span><b>Importante:</b> ao concluir o cadastro, você poderá seguir para o atendimento comercial.</span></div>
+        </aside>
+
+        <div class="form-card reveal" id="formCard">
+          <form id="wholesaleForm" novalidate>
+            <div class="progress" aria-hidden="true"><span class="active"></span><span></span><span></span><span></span></div>
+            <div class="form-body">
+              <input class="honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <section class="form-step active" data-step="1">
+                <div class="step-meta">Etapa 01 / 04 · Perfil</div>
+                <h3 class="form-title">Como você compra?</h3>
+                <div class="choice-grid">
+                  <div class="choice"><input type="radio" id="tipoCpf" name="tipo" value="CPF" required><label for="tipoCpf">CPF</label></div>
+                  <div class="choice"><input type="radio" id="tipoCnpj" name="tipo" value="CNPJ" required><label for="tipoCnpj">CNPJ</label></div>
+                </div>
+                <div class="error" role="alert"></div>
+                <div class="form-nav"><span></span><button class="btn next" type="button">Continuar</button></div>
+              </section>
+
+              <section class="form-step" data-step="2">
+                <div class="step-meta">Etapa 02 / 04 · Dados</div>
+                <h3 class="form-title">Quem fala com a DUC?</h3>
+                <div class="field-grid">
+                  <div class="field full"><label for="nome">Nome *</label><input id="nome" name="nome" autocomplete="name" required></div>
+                  <div class="field"><label for="whatsapp">WhatsApp *</label><input id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="(62) 99999-9999" required></div>
+                  <div class="field"><label for="email">E-mail *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+                  <div class="field"><label for="documento">CPF/CNPJ *</label><input id="documento" name="documento" inputmode="numeric" required></div>
+                  <div class="field"><label for="empresa">Nome da empresa</label><input id="empresa" name="empresa" autocomplete="organization"></div>
+                  <div class="field full"><label for="instagram">Instagram</label><input id="instagram" name="instagram" placeholder="@sualoja"></div>
+                </div>
+                <div class="error" role="alert"></div>
+                <div class="form-nav"><button class="btn btn-outline prev" type="button">Voltar</button><button class="btn next" type="button">Continuar</button></div>
+              </section>
+
+              <section class="form-step" data-step="3">
+                <div class="step-meta">Etapa 03 / 04 · Operação</div>
+                <h3 class="form-title">Como é a sua operação?</h3>
+                <div class="field-grid">
+                  <div class="field"><label for="cidade">Cidade *</label><input id="cidade" name="cidade" autocomplete="address-level2" required></div>
+                  <div class="field"><label for="estado">Estado *</label>
+                    <select id="estado" name="estado" required>
+                      <option value="">Selecione</option>
+                      <option>AC</option><option>AL</option><option>AP</option><option>AM</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MT</option><option>MS</option><option>MG</option><option>PA</option><option>PB</option><option>PR</option><option>PE</option><option>PI</option><option>RJ</option><option>RN</option><option>RS</option><option>RO</option><option>RR</option><option>SC</option><option>SP</option><option>SE</option><option>TO</option>
+                    </select>
+                  </div>
+                  <div class="field full"><span class="group-label">Estrutura *</span>
+                    <div class="choice-grid three" style="margin-top:10px">
+                      <div class="choice"><input type="radio" id="est1" name="estrutura" value="Loja física" required><label for="est1">Loja física</label></div>
+                      <div class="choice"><input type="radio" id="est2" name="estrutura" value="Loja online"><label for="est2">Loja online</label></div>
+                      <div class="choice"><input type="radio" id="est3" name="estrutura" value="Loja física e online"><label for="est3">Física + online</label></div>
+                      <div class="choice"><input type="radio" id="est4" name="estrutura" value="Revendedor"><label for="est4">Revendedor</label></div>
+                      <div class="choice"><input type="radio" id="est5" name="estrutura" value="Estou começando"><label for="est5">Estou começando</label></div>
+                    </div>
+                  </div>
+                  <div class="field full"><span class="group-label">Interesse *</span>
+                    <div class="choice-grid three" style="margin-top:10px">
+                      <div class="choice"><input type="checkbox" id="cat1" name="categorias" value="Jeans"><label for="cat1">Jeans</label></div>
+                      <div class="choice"><input type="checkbox" id="cat2" name="categorias" value="Fitness"><label for="cat2">Fitness</label></div>
+                      <div class="choice"><input type="checkbox" id="cat3" name="categorias" value="Linha completa"><label for="cat3">Linha completa</label></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="error" role="alert"></div>
+                <div class="form-nav"><button class="btn btn-outline prev" type="button">Voltar</button><button class="btn next" type="button">Continuar</button></div>
+              </section>
+
+              <section class="form-step" data-step="4">
+                <div class="step-meta">Etapa 04 / 04 · Potencial</div>
+                <h3 class="form-title">Quando você quer começar?</h3>
+                <div class="field-grid">
+                  <div class="field"><label for="faixa">Faixa estimada de compra *</label>
+                    <select id="faixa" name="faixa" required>
+                      <option value="">Selecione</option>
+                      <option>Até R$ 1.500</option><option>R$ 1.500 a R$ 3.000</option><option>R$ 3.000 a R$ 5.000</option><option>R$ 5.000 a R$ 10.000</option><option>Acima de R$ 10.000</option><option>Ainda não sei</option>
+                    </select>
+                  </div>
+                  <div class="field"><label for="prazo">Quando pretende comprar *</label>
+                    <select id="prazo" name="prazo" required>
+                      <option value="">Selecione</option><option>Imediatamente</option><option>Próximos 15 dias</option><option>Próximos 30 dias</option><option>Estou pesquisando</option>
+                    </select>
+                  </div>
+                  <div class="field full"><label for="frequencia">Frequência estimada *</label>
+                    <select id="frequencia" name="frequencia" required>
+                      <option value="">Selecione</option><option>Semanal</option><option>Quinzenal</option><option>Mensal</option><option>Por coleção</option><option>Ainda não sei</option>
+                    </select>
+                  </div>
+                  <div class="field full"><label for="mensagem">Mensagem</label><textarea id="mensagem" name="mensagem" placeholder="Se quiser, conte algo sobre a sua loja ou o que procura."></textarea></div>
+                </div>
+                <div class="consent">
+                  <label class="checkline"><input type="checkbox" name="consentimento" required> <span>Autorizo o uso dos dados informados para retorno e atendimento comercial sobre o atacado DUC. *</span></label>
+                  <label class="checkline"><input type="checkbox" name="marketing" value="Sim"> <span>Quero receber novidades, lançamentos e comunicações comerciais da DUC.</span></label>
+                </div>
+                <div class="error" role="alert"></div>
+                <div class="form-nav"><button class="btn btn-outline prev" type="button">Voltar</button><button class="btn" id="submitBtn" type="submit">Enviar cadastro</button></div>
+              </section>
+            </div>
+          </form>
+
+          <section class="success" id="successPanel" aria-live="polite">
+            <div class="success-mark">✓</div>
+            <h3>Cadastro enviado.</h3>
+            <p id="successMessage">Obrigado pelo interesse em revender DUC. Recebemos seus dados e a equipe comercial dará sequência ao atendimento.</p>
+            <div class="success-grid">
+              <div class="success-cell"><small>Perfil comercial</small><strong id="successProfile">—</strong></div>
+              <div class="success-cell"><small>Cidade / UF</small><strong id="successLocation">—</strong></div>
+              <div class="success-cell"><small>Atendimento indicado</small><strong id="successConsultant">Equipe comercial DUC</strong></div>
+              <div class="success-cell"><small>Status</small><strong>Novo cadastro</strong></div>
+            </div>
+            <a class="btn btn-arrow" id="whatsappBtn" href="#" target="_blank" rel="noopener" hidden>Falar no WhatsApp</a>
+          </section>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="marca">
+      <div class="container intro-grid">
+        <div class="reveal">
+          <div class="eyebrow">A oportunidade</div>
+          <h2 class="h2">UMA MARCA PARA FAZER PARTE DA SUA VITRINE.</h2>
+        </div>
+        <div class="intro-copy reveal">
+          <p class="lead">A DUC une jeans e moda fitness em poliamida em uma mesma linguagem de moda — peças com presença, caimento e apelo de vitrine.</p>
+          <p class="copy">Para quem vende moda, a DUC amplia o mix com propostas que transitam entre o cotidiano, o estilo e o movimento.</p>
+          <div class="intro-stats">
+            <div class="stat"><b>01</b><span>Jeans com identidade e presença de moda.</span></div>
+            <div class="stat"><b>02</b><span>Moda fitness em poliamida, com conforto, movimento e estilo.</span></div>
+            <div class="stat"><b>03</b><span>Atendimento direcionado ao perfil da sua operação.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="editorial reveal" aria-label="Posicionamento DUC">
+      <div class="editorial-grid">
+        <div class="editorial-media"><img src="duc-denim-editorial.jpg" alt="Editorial DUC com saia jeans em ambiente contemporâneo" loading="lazy" /></div>
+        <div class="editorial-copy">
+          <div class="eyebrow">DUC Jeans</div>
+          <div>
+            <div class="editorial-kicker">DO JEANS AO MOVIMENTO. DUC.</div>
+            <p>Jeans para o dia a dia. Poliamida para acompanhar o movimento. Feminino e masculino reunidos em um universo de moda com identidade DUC.</p>
+            <a class="btn btn-light" href="#cadastro">Levar DUC para minha loja</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="universo">
+      <div class="container">
+        <div class="universe-head reveal">
+          <div>
+            <div class="eyebrow">Universo DUC</div>
+            <h2 class="h2">IMAGEM DE MARCA. PRODUTO COM PRESENÇA.</h2>
+          </div>
+          <p class="copy">Feminino, masculino, jeans e fitness em poliamida: uma seleção pensada para ampliar o mix da sua loja com presença de marca.</p>
+        </div>
+
+        <div class="gallery">
+          <div class="gallery-col">
+            <article class="tile reveal"><img src="duc-fitness-green.jpg" alt="Conjunto fitness verde DUC" loading="lazy" /><span class="tile-label">Fitness feminino · Poliamida</span></article>
+            <article class="tile small reveal"><img src="duc-denim-editorial.jpg" alt="Saia jeans feminina DUC" loading="lazy" /><span class="tile-label light">Jeans feminino</span></article>
+          </div>
+          <div class="gallery-col">
+            <article class="tile small reveal"><img src="duc-mens-casual.jpg" alt="Look masculino casual DUC" loading="lazy" /><span class="tile-label">Masculino casual</span></article>
+            <article class="tile reveal"><img src="duc-fitness-jumpsuit.jpg" alt="Macacão fitness DUC em poliamida" loading="lazy" /><span class="tile-label">Macacão fitness · Poliamida</span></article>
+          </div>
+          <div class="gallery-col">
+            <article class="tile reveal"><img src="duc-mens-kneel.jpg" alt="Look masculino esportivo DUC" loading="lazy" /><span class="tile-label">Masculino sport</span></article>
+            <article class="tile small reveal"><img src="duc-mens-denim.jpg" alt="Bermuda jeans masculina DUC" loading="lazy" /><span class="tile-label light">Jeans masculino</span></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how" id="como-comprar">
+      <div class="container">
+        <div class="eyebrow reveal">Como comprar no atacado</div>
+        <h2 class="h2 reveal">UM CAMINHO SIMPLES ATÉ O SEU PEDIDO.</h2>
+        <div class="steps">
+          <article class="step reveal"><span class="step-no">01 / 04</span><div><h3>Cadastre-se</h3><p>Conte rapidamente quem você é e como funciona a sua operação.</p></div></article>
+          <article class="step reveal"><span class="step-no">02 / 04</span><div><h3>Perfil</h3><p>A equipe entende o perfil da sua loja e o que você procura.</p></div></article>
+          <article class="step reveal"><span class="step-no">03 / 04</span><div><h3>Atendimento</h3><p>A equipe comercial dá continuidade ao atendimento com você.</p></div></article>
+          <article class="step reveal"><span class="step-no">04 / 04</span><div><h3>Pedido</h3><p>Conheça as condições comerciais e avance para o seu pedido.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote">
+      <img src="duc-fitness-purple.jpg" alt="Editorial fitness DUC" loading="lazy" />
+      <div class="container quote-inner reveal"><p class="quote-text">MODA PARA A VITRINE. <em>PRODUTO PARA VENDER.</em></p></div>
+    </section>
+
+    <section class="section" id="duvidas">
+      <div class="container faq-grid">
+        <div class="reveal"><div class="eyebrow">Dúvidas</div><h2 class="h2">O QUE VOCÊ PRECISA SABER.</h2></div>
+        <div class="faq-list reveal">
+          <article class="faq-item open"><button class="faq-q" type="button"><span>Quem pode se cadastrar para comprar no atacado?</span><span>+</span></button><div class="faq-a"><div><p>Lojistas, revendedores e compradores que desejam comercializar DUC podem iniciar o atendimento por aqui.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button"><span>Preciso ter CNPJ?</span><span>+</span></button><div class="faq-a"><div><p>Você pode iniciar o cadastro com CPF ou CNPJ. As condições comerciais são apresentadas pela equipe DUC no atendimento.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button"><span>Qual é o pedido mínimo?</span><span>+</span></button><div class="faq-a"><div><p>O pedido mínimo, as condições de pagamento e a disponibilidade das peças são apresentados pela equipe comercial no atendimento.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button"><span>Como funciona o atendimento depois do cadastro?</span><span>+</span></button><div class="faq-a"><div><p>Depois do cadastro, a equipe DUC entra em contato para apresentar as coleções, as condições comerciais e os próximos passos para comprar no atacado.</p></div></div></article>
+          <article class="faq-item"><button class="faq-q" type="button"><span>Posso falar pelo WhatsApp antes de preencher?</span><span>+</span></button><div class="faq-a"><div><p>O atendimento pelo WhatsApp é liberado depois da conclusão do cadastro, para que a equipe já receba as principais informações sobre a sua operação.</p></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final">
+      <div class="container reveal">
+        <div class="eyebrow">Atacado DUC</div>
+        <h2 class="h2">A PRÓXIMA VITRINE PODE SER A SUA.</h2>
+        <p>Conte sobre a sua loja e dê o primeiro passo para levar DUC à sua vitrine.</p>
+        <a class="btn btn-light" href="#cadastro">Quero revender DUC</a>
+      </div>
+    </section>
+
+
+
+
+    <section class="denim-motion" aria-label="Denim que se move com você">
+      <div class="container denim-motion-grid">
+        <div class="denim-motion-copy reveal">
+          <div class="eyebrow">Jeans + Fitness</div>
+          <h2 class="denim-motion-title">Denim que se move com você</h2>
+          <p>Uma proposta de denim com atitude esportiva e linguagem de moda. O jeans encontra a energia do movimento e conversa com a moda fitness DUC em poliamida.</p>
+          <div class="denim-motion-note">Denim com atitude. Movimento com identidade DUC.</div>
+        </div>
+        <div class="denim-motion-media reveal">
+          <div class="denim-motion-frame"><img src="duc-denim-move.png" alt="Modelo DUC com jeans em proposta fitness" loading="lazy" /></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-wordmark"><img class="brand-logo brand-logo-footer" src="duc-logo-white.png" alt="DUC Jeans" /></div>
+        <div class="footer-right">
+          <div class="footer-col"><b>Navegação</b><a href="#marca">A marca</a><a href="#universo">Coleções</a><a href="#cadastro">Atacado</a><a href="#duvidas">Dúvidas</a></div>
+          <div class="footer-col"><b>Social</b><a href="https://www.instagram.com/ducjeansoficial/" target="_blank" rel="noopener">@ducjeansoficial ↗</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> DUC JEANS</span><span>Atacado oficial DUC</span></div>
+    </div>
+  </footer>
+
+  <a class="mobile-cta" id="mobileCta" href="#cadastro">Quero revender DUC</a>
+
+  <script src="config.js"></script>
+
+  <script>
+    /* =========================================================
+       DUC ATACADO — CONFIGURAÇÕES RÁPIDAS
+       ========================================================= */
+    const APPS_SCRIPT_URL = window.DUC_CONFIG?.APPS_SCRIPT_URL || '';
+    const META_PIXEL_ID = window.DUC_CONFIG?.META_PIXEL_ID || '';
+
+    // Consultoras: deixe vazio até receber nomes, números e regras.
+    // Exemplo de formato (não usar dados fictícios em produção):
+    // { name:'Nome', phone:'5562999999999', states:['GO','DF'], minScore:0, maxScore:999 }
+    const CONSULTANTS = window.DUC_CONFIG?.CONSULTANTS || [];
+
+    const SOURCE = 'Atacado DUC';
+    const INITIAL_STATUS = 'Novo cadastro';
+
+    /* =========================================================
+       META PIXEL
+       ========================================================= */
+    function loadMetaPixel(){
+      if(!META_PIXEL_ID) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init',META_PIXEL_ID);
+      fbq('track','PageView');
+      fbq('track','ViewContent',{content_name:'Atacado DUC'});
+    }
+    function track(eventName, params={}){
+      if(META_PIXEL_ID && typeof window.fbq === 'function') fbq('track',eventName,params);
+    }
+    loadMetaPixel();
+
+    /* =========================================================
+       MENU / UI
+       ========================================================= */
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click',()=>{
+      const open = document.body.classList.toggle('menu-open');
+      menuBtn.setAttribute('aria-expanded',String(open));
+      menuBtn.textContent = open ? 'Fechar' : 'Menu';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+      document.body.classList.remove('menu-open');
+      menuBtn.setAttribute('aria-expanded','false');
+      menuBtn.textContent='Menu';
+    }));
+
+    document.querySelectorAll('.faq-q').forEach(btn=>btn.addEventListener('click',()=>{
+      btn.closest('.faq-item').classList.toggle('open');
+    }));
+
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const mobileCta = document.getElementById('mobileCta');
+    const formSection = document.getElementById('cadastro');
+    const ctaObserver = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>mobileCta.classList.toggle('hide',entry.isIntersecting));
+    },{threshold:.16});
+    ctaObserver.observe(formSection);
+
+    /* =========================================================
+       FORM MULTI-STEP
+       ========================================================= */
+    const form = document.getElementById('wholesaleForm');
+    const steps = [...document.querySelectorAll('.form-step')];
+    const progress = [...document.querySelectorAll('.progress span')];
+    let currentStep = 0;
+
+    function setStep(index){
+      currentStep = Math.max(0,Math.min(index,steps.length-1));
+      steps.forEach((s,i)=>s.classList.toggle('active',i===currentStep));
+      progress.forEach((p,i)=>p.classList.toggle('active',i<=currentStep));
+      const cardTop = document.getElementById('formCard').getBoundingClientRect().top + window.scrollY - 96;
+      if(window.scrollY > cardTop + 120) window.scrollTo({top:cardTop,behavior:'smooth'});
+    }
+
+    function getStepControls(stepEl){
+      return [...stepEl.querySelectorAll('input,select,textarea')].filter(el=>el.type!=='hidden' && !el.classList.contains('honeypot'));
+    }
+
+    function validateStep(stepEl){
+      const errorBox = stepEl.querySelector('.error');
+      errorBox.classList.remove('show');
+      errorBox.textContent='';
+
+      const required = getStepControls(stepEl).filter(el=>el.required);
+      for(const el of required){
+        if((el.type==='radio' || el.type==='checkbox')){
+          const group = form.querySelectorAll(`[name="${el.name}"]`);
+          if(![...group].some(x=>x.checked)){
+            errorBox.textContent='Preencha as informações obrigatórias para continuar.';
+            errorBox.classList.add('show');
+            return false;
+          }
+        }else if(!el.value.trim()){
+          errorBox.textContent='Preencha as informações obrigatórias para continuar.';
+          errorBox.classList.add('show');
+          el.focus();
+          return false;
+        }else if(el.type==='email' && !el.checkValidity()){
+          errorBox.textContent='Informe um e-mail válido.';
+          errorBox.classList.add('show');
+          el.focus();
+          return false;
+        }
+      }
+
+      if(stepEl.dataset.step==='3' && !form.querySelector('input[name="categorias"]:checked')){
+        errorBox.textContent='Selecione pelo menos uma categoria de interesse.';
+        errorBox.classList.add('show');
+        return false;
+      }
+      return true;
+    }
+
+    document.querySelectorAll('.next').forEach(btn=>btn.addEventListener('click',()=>{
+      if(validateStep(steps[currentStep])) setStep(currentStep+1);
+    }));
+    document.querySelectorAll('.prev').forEach(btn=>btn.addEventListener('click',()=>setStep(currentStep-1)));
+
+    // Máscara simples para WhatsApp e CPF/CNPJ
+    document.getElementById('whatsapp').addEventListener('input',e=>{
+      let v=e.target.value.replace(/\D/g,'').slice(0,11);
+      v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
+      e.target.value=v;
+    });
+    document.getElementById('documento').addEventListener('input',e=>{
+      let v=e.target.value.replace(/\D/g,'').slice(0,14);
+      if(v.length<=11){
+        v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+      }else{
+        v=v.replace(/^(\d{2})(\d)/,'$1.$2').replace(/^(\d{2})\.(\d{3})(\d)/,'$1.$2.$3').replace(/\.(\d{3})(\d)/,'.$1/$2').replace(/(\d{4})(\d)/,'$1-$2');
+      }
+      e.target.value=v;
+    });
+
+    /* =========================================================
+       SCORE / CLASSIFICAÇÃO
+       ========================================================= */
+    function calculateScore(data){
+      let score=0;
+      if(data.tipo==='CNPJ') score+=20;
+      if(['Loja física','Loja online','Loja física e online'].includes(data.estrutura)) score+=15;
+      if(data.instagram) score+=5;
+
+      const faixaPts={
+        'Até R$ 1.500':5,
+        'R$ 1.500 a R$ 3.000':15,
+        'R$ 3.000 a R$ 5.000':25,
+        'R$ 5.000 a R$ 10.000':35,
+        'Acima de R$ 10.000':45,
+        'Ainda não sei':0
+      };
+      score+=faixaPts[data.faixa]||0;
+
+      const prazoPts={'Imediatamente':20,'Próximos 15 dias':12,'Próximos 30 dias':6,'Estou pesquisando':0};
+      score+=prazoPts[data.prazo]||0;
+
+      const freqPts={'Semanal':10,'Quinzenal':10,'Mensal':6,'Por coleção':3,'Ainda não sei':0};
+      score+=freqPts[data.frequencia]||0;
+      return score;
+    }
+
+    // Faixas iniciais. Ajuste facilmente depois conforme a operação comercial.
+    function classify(score){
+      if(score>=85) return 'Atacadista Top';
+      if(score>=60) return 'Lojista qualificado';
+      if(score>=40) return 'Revendedor de alto potencial';
+      return 'Revendedor em desenvolvimento';
+    }
+
+    function chooseConsultant(data){
+      // Primeiro match por UF e faixa de score; se não houver regra, retorna null.
+      return CONSULTANTS.find(c=>
+        (!c.states || c.states.length===0 || c.states.includes(data.estado)) &&
+        (typeof c.minScore!=='number' || data.score>=c.minScore) &&
+        (typeof c.maxScore!=='number' || data.score<=c.maxScore)
+      ) || null;
+    }
+
+    function formDataToLead(){
+      const fd=new FormData(form);
+      const data=Object.fromEntries(fd.entries());
+      data.categorias=[...form.querySelectorAll('input[name="categorias"]:checked')].map(el=>el.value).join(', ');
+      data.marketing=form.querySelector('input[name="marketing"]').checked?'Sim':'Não';
+      data.origem=SOURCE;
+      data.status=INITIAL_STATUS;
+      data.score=calculateScore(data);
+      data.classificacao=classify(data.score);
+      const consultant=chooseConsultant(data);
+      data.consultoria=consultant?consultant.name:'Não configurada';
+      data.observacoes='';
+      return {data,consultant};
+    }
+
+    async function sendLead(payload){
+      if(!APPS_SCRIPT_URL){
+        throw new Error('CONFIG_REQUIRED');
+      }
+      const response=await fetch(APPS_SCRIPT_URL,{
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify(payload)
+      });
+      if(!response.ok) throw new Error('HTTP_'+response.status);
+      const text=await response.text();
+      let result={ok:true};
+      try{ result=JSON.parse(text); }catch(_){ /* Apps Script pode retornar texto simples */ }
+      if(result && result.ok===false) throw new Error(result.error||'SERVER_ERROR');
+      return result;
+    }
+
+    function showSuccess(data,consultant){
+      form.style.display='none';
+      document.getElementById('successPanel').classList.add('show');
+      document.getElementById('successProfile').textContent=data.classificacao;
+      document.getElementById('successLocation').textContent=`${data.cidade} / ${data.estado}`;
+      document.getElementById('successConsultant').textContent=consultant?consultant.name:'Equipe comercial DUC';
+      document.getElementById('successMessage').textContent=`${data.nome.split(' ')[0]}, obrigado pelo interesse em revender DUC. Seu cadastro foi recebido com sucesso.`;
+
+      const waBtn=document.getElementById('whatsappBtn');
+      if(consultant && consultant.phone){
+        const first=data.nome.split(' ')[0];
+        const msg=`Olá, ${consultant.name}! Sou ${first}, de ${data.cidade}/${data.estado}. Acabei de concluir meu cadastro no Atacado DUC e gostaria de dar continuidade ao atendimento.`;
+        waBtn.href=`https://wa.me/${String(consultant.phone).replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`;
+        waBtn.hidden=false;
+        waBtn.onclick=()=>track('Contact',{content_name:'WhatsApp pós-cadastro'});
+      }
+      track('Lead',{content_name:'Cadastro Atacado DUC'});
+      document.getElementById('formCard').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    form.addEventListener('submit',async e=>{
+      e.preventDefault();
+      const step=steps[currentStep];
+      if(!validateStep(step)) return;
+
+      const errorBox=step.querySelector('.error');
+      const submitBtn=document.getElementById('submitBtn');
+      const {data,consultant}=formDataToLead();
+
+      if(data.website) return; // honeypot
+
+      submitBtn.disabled=true;
+      submitBtn.textContent='Enviando...';
+      errorBox.classList.remove('show');
+
+      try{
+        const result=await sendLead(data);
+        if(result?.score!==undefined) data.score=result.score;
+        if(result?.classificacao) data.classificacao=result.classificacao;
+
+        let finalConsultant=consultant;
+        if(result?.consultoria){
+          finalConsultant={
+            name:result.consultoria,
+            phone:result.consultantPhone||''
+          };
+        }
+        showSuccess(data,finalConsultant);
+      }catch(err){
+        console.error(err);
+        if(err.message==='CONFIG_REQUIRED'){
+          errorBox.innerHTML='<strong>Integração pendente.</strong> Configure a constante <code>APPS_SCRIPT_URL</code> no início do JavaScript antes de publicar o formulário.';
+        }else{
+          errorBox.textContent='Não foi possível enviar agora. Tente novamente em instantes.';
+        }
+        errorBox.classList.add('show');
+      }finally{
+        submitBtn.disabled=false;
+        submitBtn.textContent='Enviar cadastro';
+      }
+    });
+  </script>
+</body>
+</html>
